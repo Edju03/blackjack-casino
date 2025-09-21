@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --felt-green: 11 92 14;
+    --felt-dark: 6 56 7;
+    --card-red: 220 38 38;
+    --card-black: 15 23 42;
+    --gold: 255 215 0;
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    @apply relative w-20 h-28 rounded-lg shadow-xl transition-all duration-300;
+    @apply bg-white border-2 border-gray-300;
+  }
+
+  .card-back {
+    @apply bg-gradient-to-br from-blue-800 to-blue-900;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.05) 20px
+    );
+  }
+
+  .chip {
+    @apply relative w-12 h-12 rounded-full shadow-lg cursor-pointer transition-transform hover:scale-110;
+    @apply flex items-center justify-center text-white font-bold text-sm;
+  }
+
+  .chip-5 {
+    @apply bg-red-600;
+  }
+
+  .chip-10 {
+    @apply bg-blue-600;
+  }
+
+  .chip-25 {
+    @apply bg-green-600;
+  }
+
+  .chip-100 {
+    @apply bg-black;
+  }
+
+  .chip-500 {
+    @apply bg-purple-600;
+  }
+
+  .btn-action {
+    @apply px-6 py-3 rounded-lg font-semibold text-white shadow-lg;
+    @apply transition-all duration-200 transform hover:scale-105;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  .btn-hit {
+    @apply bg-blue-600 hover:bg-blue-700;
+  }
+
+  .btn-stand {
+    @apply bg-green-600 hover:bg-green-700;
+  }
+
+  .btn-double {
+    @apply bg-yellow-600 hover:bg-yellow-700;
+  }
+
+  .btn-split {
+    @apply bg-purple-600 hover:bg-purple-700;
+  }
+
+  .btn-surrender {
+    @apply bg-red-600 hover:bg-red-700;
+  }
+
+  .btn-insurance {
+    @apply bg-orange-600 hover:bg-orange-700;
+  }
+
+  .hand-indicator {
+    @apply absolute -bottom-8 left-1/2 transform -translate-x-1/2;
+    @apply text-white text-sm font-semibold bg-black bg-opacity-75 px-2 py-1 rounded;
+  }
+
+  .table-felt {
+    @apply bg-gradient-to-b from-felt-dark to-felt-green;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(0, 0, 0, 0.3), transparent 70%),
+      radial-gradient(ellipse at bottom, rgba(0, 0, 0, 0.2), transparent 70%);
+  }
+}
+
+@keyframes dealCard {
+  from {
+    transform: translateY(-100px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.animate-deal {
+  animation: dealCard 0.5s ease-out;
+}
+
+.animate-flip {
+  animation: flipCard 0.6s ease-in-out;
+}
